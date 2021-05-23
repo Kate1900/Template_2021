@@ -1,9 +1,25 @@
-#include <stdio.h>
-#include "multiply.h"
+#include <iostream>
+
+#include "roman.h"
+
+using namespace std;
 
 int main() {
-  printf("hello!\n");
-  printf("%d\n", multiply(3, 4));
 
-  return 0;
+	arabic num = { 1 };
+  
+	roman num2 = { "IIIII" };
+
+	converter conv;
+
+	cout << num.value << endl;
+  
+	cout << conv.toArabic(num2).value << endl;
+  
+	cout << conv.check(num2) << endl;
+  
+	cout << num2.value << endl;
+  
+	return 0;
 }
+
