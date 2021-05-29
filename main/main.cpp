@@ -34,11 +34,11 @@ int main()
   
 	cout << "\n Polynom P3 = P + P2 = " << P3 << endl;
 	
-	TPolynomial pol = TPolynomial::load("C:\\Users\\1\\source\\repos\\polynom1\\polynom1\\polynom_for_load.txt");
+	TPolynomial pol = TPolynomial::load("C:\\Users\\1\\Desktop\\polynom_for_load.txt");
 
 	cout <<"\nYour polynom from file looks like that:  "<< pol << endl;
 
-	pol.save("C:\\Users\\1\\source\\repos\\polynom1\\polynom1\\polynom_for_save.txt");
+	pol.save("C:\\Users\\1\\Desktop\\polynom_for_save.txt");
 
 	return 0;
   
