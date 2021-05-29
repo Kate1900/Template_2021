@@ -1,3 +1,3 @@
-#include "polynom.h"
+//#include "polynom.h"
 
 
