@@ -18,14 +18,15 @@ arabic converter::toArabic(roman num)
 
     arabic result{ 0 };
 
-    for (int i = 0; i < num.value.length() - 1; i++)
-    {
-        if (m[num.value[i]] < m[num.value[static_cast<unsigned __int64>(i) + 1]])
-            result.value -= m[num.value[i]];
-      
-        else if (m[num.value[i]] >= m[num.value[static_cast<unsigned __int64>(i) + 1]])
-            result.value += m[num.value[i]];
-    }
+	for (int i = 0; i < num.value.length() - 1; i++)
+	{
+		if (m[num.value[i]] < m[num.value[i + 1]])
+			result.value -= m[num.value[i]];
+
+		else if (m[num.value[i]] >= m[num.value[i + 1]])
+			result.value += m[num.value[i]];
+	}
+
 
     result.value += m[num.value[num.value.length() - 1]];
 
