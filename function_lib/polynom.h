@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <fstream>
 
 #include "monom.h"
 
@@ -47,6 +48,16 @@ public:
 	TPolynomial& operator-=(const TMonomial &m);
   
 	friend std::ostream& operator<<(std::ostream &ostr, TPolynomial& Tm);
+	
+	friend std::ostream& operator<<(std::ostream& ostr, TPolynomial& Tm);
+	
+	friend std::istream& operator>>(std::istream& istr, TPolynomial& Tm);
+	
+	static TPolynomial& load(const char* name);
+	
+	void save(const char* name);
+
+	
 };
 
 TPolynomial::TPolynomial()
@@ -331,4 +342,67 @@ ostream& operator<<(ostream &ostr, TPolynomial& Tm)
   
 	return ostr;
   
+}
+istream& operator>>(istream& istr, TPolynomial& Tm)
+{
+	int count;//number of monoms
+	
+	istr >> count;
+	
+	/*int razm;//number of variable
+	istr >> razm;*/
+	
+	for (int i = 0; i < count; i++)
+	{
+		double koef;
+		
+		int power;
+		
+		istr >> koef;
+		
+		istr >> power;
+		
+		TMonomial A( power,koef);
+		
+		Tm += A;
+
+	}
+	return istr;
+}
+
+TPolynomial& TPolynomial::load(const char* name)
+{
+	std::ifstream file;
+	
+	file.open(name, std::fstream::in);
+	
+	if (!file.is_open())
+		throw "can't open such file";
+	
+	auto* polynom = new TPolynomial();
+	
+	file >> *polynom;
+	
+	file.close();
+	
+	cout << "\nYour polynom has been successfully loaded from file\n";
+	
+	return *polynom;
+	
+}
+
+void TPolynomial::save(const char* name)
+{
+	fstream file;
+	
+	file.open(name, fstream::out);
+	
+	if (!file.is_open())
+		throw "can't open such file";
+	
+	file << this->k + 1 << "\n" << *this;
+	
+	file.close();
+	
+	cout << "\nYour polynom has been successfully saved in file\n";
 }
